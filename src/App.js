@@ -1,7 +1,7 @@
 import './App.css';
 import firebase from './firebase.js';
 import {useEffect, useState} from 'react';
-import {getDatabase, ref, onValue} from 'firebase/database';
+import {getDatabase, ref, onValue, push} from 'firebase/database';
 
 function App() {
   // pieces of state
@@ -43,6 +43,22 @@ function App() {
     setUserInput(e.target.value);
   }
 
+  const handleSubmit = (e) => {
+    // prevent default browser refresh after form submission
+    e.preventDefault();
+
+    // create a database variable containing the imported firebase config
+    const database = getDatabase(firebase);
+    // create a variable that references this database
+    const dbRef = ref(database);
+
+    // push the userInput state (with its bound value property) to the database
+    push(dbRef, userInput)
+
+    // after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
+    setUserInput('');
+  }
+
   // JSX
   return (
     <div className="App">
@@ -71,9 +87,9 @@ function App() {
         // binding the userInput state to the value attribute
         value={userInput}
         />
-        <button>Add Note</button>
+        <button onClick={handleSubmit}>Add Note</button>
       </form>
-    </div>
+    </div> // end of JSX return
   );
 }
 
@@ -92,3 +108,13 @@ export default App;
 // Bind the HTML value attribute of the input to the component's state
 // Call the function on submit and at that point access/update the database 
 // Render everything to the page, ideally styled as post-it notes or something similar
+
+// PSEUDO CODE for STRETCH GOALS
+// add a 'clear all' button that gets rid of the current notes
+// add basic visuals/styling
+// add the ability to drag and drop notes
+// change cursors for dragging and dropping
+// add basic animations for picking up and dropping notes
+// add basic sounds for picking up and dropping notes
+// add some kind of colour option/randomized generator for new notes
+// add the ability to store images on notes with firestore
