@@ -4,7 +4,9 @@ import {useEffect, useState} from 'react';
 import {getDatabase, ref, onValue} from 'firebase/database';
 
 function App() {
+  // pieces of state
   const [items, setItems] = useState([]);
+  const [userInput, setUserInput] = useState('');
 
   // the useEffect hook is used to request the data from firebase
   useEffect(() => {
@@ -38,8 +40,7 @@ function App() {
   // the handleInputChange function handles the user's input as it is typed into the form
   const handleInputChange = (e) => {
     // this tells react to update the state of the App component to include whatever is currently the value of the input of the form
-    // setUserInput(event.target.value);
-    console.log(e.target.value)
+    setUserInput(e.target.value);
   }
 
   // JSX
@@ -62,8 +63,14 @@ function App() {
         {/* this form will handle user input */}
       <form action="submit">
         <label htmlFor="newItem">Add a new note!</label>
-        {/* here we use onChange, which as an event listener has an event object, and connect it to the handleInputChange function */}
-        <input type="text" id="newItem" onChange={handleInputChange} />
+        <input 
+        type="text" 
+        id="newItem" 
+        // connecting onChange's event object to be used by the handleInputChange function 
+        onChange={handleInputChange}
+        // binding the userInput state to the value attribute
+        value={userInput}
+        />
         <button>Add Note</button>
       </form>
     </div>
