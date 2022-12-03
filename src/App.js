@@ -1,20 +1,15 @@
 import './App.css';
 import firebase from './firebase.js';
-import {useEffect, useState} from 'react';
-import {getDatabase, ref, onValue, push} from 'firebase/database';
+import {useState, useEffect} from 'react';
+import {getDatabase, ref, onValue, push, remove} from 'firebase/database';
 
-function App() {
+const App = () => {
   // pieces of state
   const [items, setItems] = useState([]);
   const [userInput, setUserInput] = useState('');
 
   // the useEffect hook is used to request the data from firebase
   useEffect(() => {
-    // variable that holds database content
-    const database = getDatabase(firebase)
-
-    // variable that references the database
-    const dbRef = ref(database)
 
     onValue(dbRef, (response) => {
       // variable that stores the new state
@@ -27,7 +22,7 @@ function App() {
       // for loop to access each individual item in the data object
       for (let key in data) {
         // inside the loop, we push each book name to the newState array in the onValue function
-        newState.push(data[key]);
+        newState.push({key: key, note: data[key]});
       }
 
       // then, we call setItems to update the component's state using the local array newState
@@ -59,6 +54,17 @@ function App() {
     setUserInput('');
   }
 
+  // the item's id is taken as an arguement and then used by this function remove a specific note
+  const handleRemoveItem = (itemId) => {
+    // variable that holds database content
+    const database = getDatabase(firebase);
+    // variable that references the database, specifically targeting the node of the item(note) we want to remove
+    const dbRef = ref(database, `/${itemId}`);
+
+    // this uses the firebase remove() method to delete a speicific note based on its itemId
+    remove(dbRef)
+  }
+
   // JSX
   return (
     <div className="App">
@@ -67,17 +73,17 @@ function App() {
       </header>
       <ul>
         {/* map through the items array, displaying each item */}
-        {items.map((item) => {
+        {items.map(item => {
           return (
-            <li>
-              <p>{item}</p>
+            <li key={item.key}>
+              <p>{item.note} - {item.key}</p>
             </li>
           )
         })}
       </ul>
 
         {/* this form will handle user input */}
-      <form action="submit">
+      <form actions="submit">
         <label htmlFor="newItem">Add a new note!</label>
         <input 
         type="text" 
@@ -89,6 +95,13 @@ function App() {
         />
         <button onClick={handleSubmit}>Add Note</button>
       </form>
+
+      {/* This remove button will allow the user to delete specific notes */}
+      <li key={item.key}>
+        <p>{item.note}</p>
+        {/* using a deffered function */}
+        <button onClick={() => handleRemoveItem(item.key)}>Remove Note</button>
+      </li>
     </div> // end of JSX return
   );
 }
@@ -109,9 +122,15 @@ export default App;
 // Call the function on submit and at that point access/update the database 
 // Render everything to the page, ideally styled as post-it notes or something similar
 
+// error handling --> 
+// set character limit for input (likely in JSX?)
+// set limit for how many notes one can have?
+
+
 // PSEUDO CODE for STRETCH GOALS
-// add a 'clear all' button that gets rid of the current notes
+// add a 'clear all' button that gets rid of all current notes
 // add basic visuals/styling
+// add an 'X' in the corner of the note that will cause it to be removed
 // add the ability to drag and drop notes
 // change cursors for dragging and dropping
 // add basic animations for picking up and dropping notes
