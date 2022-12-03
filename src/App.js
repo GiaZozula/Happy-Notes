@@ -35,6 +35,13 @@ function App() {
     // using an empty dependancy array in order to render this code only once after initializing 
   }, [])
 
+  // the handleInputChange function handles the user's input as it is typed into the form
+  const handleInputChange = (e) => {
+    // this tells react to update the state of the App component to include whatever is currently the value of the input of the form
+    // setUserInput(event.target.value);
+    console.log(e.target.value)
+  }
+
   // JSX
   return (
     <div className="App">
@@ -52,6 +59,13 @@ function App() {
         })}
       </ul>
 
+        {/* this form will handle user input */}
+      <form action="submit">
+        <label htmlFor="newItem">Add a new note!</label>
+        {/* here we use onChange, which as an event listener has an event object, and connect it to the handleInputChange function */}
+        <input type="text" id="newItem" onChange={handleInputChange} />
+        <button>Add Note</button>
+      </form>
     </div>
   );
 }
