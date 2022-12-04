@@ -6,11 +6,11 @@ ul {
   list-style: none;
 }
 
-.viewNoteForm {
+.form-visible {
   display: block;
 }
 
-.hideNoteForm {
+.form-invisible {
   display:none;
 } 
 

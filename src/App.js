@@ -1,3 +1,6 @@
+// I initially struggled a bit with how to properly use CSS with states etc., but after discussing with Andres a bit and looking at https://blog.logrocket.com/create-responsive-navbar-react-css/ it became a lot clearer!
+
+
 import './App.css';
 import firebase from './firebase.js';
 import {useState, useEffect} from 'react';
@@ -7,7 +10,7 @@ function App() {
   // pieces of state
   const [items, setItems] = useState([]);
   const [userInput, setUserInput] = useState('');
-  const [noteForm, setNoteForm] = useState(false);
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   // the useEffect hook is used to request the data from firebase
   useEffect(() => {
@@ -70,17 +73,6 @@ function App() {
   remove(dbRef)
   }
 
-  // Andres gave me some insight into how he was handling css changes in his project
-  const noteSwitcher = () => {
-    if (setNoteForm(false)) {
-      setNoteForm(true);
-    } else {
-      setNoteForm(false);
-      console.log('pressing')
-    }
-  }
-    
-
   // JSX
   return (
     <div className="App">
@@ -101,9 +93,14 @@ function App() {
         })}
       </ul>
 
+      <button onClick={() => setIsFormVisible(!isFormVisible)}>View New Note</button>
+
         {/* this form will handle user input */}
-      <form action="submit">
-        <label htmlFor="newItem">Add a new note!</label>
+      <form className= {
+        isFormVisible ? 'form-visible' : 'form-invisible'
+        } 
+        action="submit">
+        <label htmlFor="inputForm">Add a new note!</label>
         <input 
         type = "text" 
         id = "newItem" 
@@ -119,10 +116,7 @@ function App() {
         <button onClick={handleSubmit}>Add Note</button>
       </form>    
 
-      {/* {numberOfCookies === 1 ? {numberOfCookies} : We have no cookies} */}
 
-
-      <button onClick={noteSwitcher}>View New Note</button>
     </div> // end of JSX return
   );
 }
