@@ -96,7 +96,9 @@ function App() {
         <input 
         type = "text" 
         id = "newItem" 
-        // set a max length for the input of characters
+        // set a minimum length for the input of characters
+        minlength = "1"
+        // set a maximum length for the input of characters
         maxlength = "25"
         // connecting onChange's event object to be used by the handleInputChange function 
         onChange = {handleInputChange}
