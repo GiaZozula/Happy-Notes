@@ -94,12 +94,14 @@ function App() {
       <form action="submit">
         <label htmlFor="newItem">Add a new note!</label>
         <input 
-        type="text" 
-        id="newItem" 
+        type = "text" 
+        id = "newItem" 
+        // set a max length for the input of characters
+        maxlength = "25"
         // connecting onChange's event object to be used by the handleInputChange function 
-        onChange={handleInputChange}
+        onChange = {handleInputChange}
         // binding the userInput state to the value attribute
-        value={userInput}
+        value = {userInput}
         />
         <button onClick={handleSubmit}>Add Note</button>
       </form>    
@@ -116,20 +118,16 @@ export default App;
 // Create a state to store user's input data (userInput)
 // Use an event object (from onChange or something) attached to an input of some kind to track the user's input and store it in the userInput state (will likely use a button so that the function is only called on submit)
 // On change is listening to input (as soon as they type even a single letter), and then On submit, theres even more one
-
 // On value tiggers once on load, and then it will also update the database
-
 // Bind the HTML value attribute of the input to the component's state
 // Call the function on submit and at that point access/update the database 
 // Render everything to the page, ideally styled as post-it notes or something similar
 
 // error handling --> 
-// set character limit for input (likely in JSX?)
 // set limit for how many notes one can have?
-
+// add a visual/audio cue for when the character limit for the input is reached
 
 // PSEUDO CODE for STRETCH GOALS
-// add a 'clear all' button that gets rid of all current notes
 // add basic visuals/styling
 // add an 'X' in the corner of the note that will cause it to be removed
 // add the ability to drag and drop notes
@@ -137,4 +135,5 @@ export default App;
 // add basic animations for picking up and dropping notes
 // add basic sounds for picking up and dropping notes
 // add some kind of colour option/randomized generator for new notes
+// add a 'clear all' button that gets rid of all current notes
 // add the ability to store images on notes with firestore
