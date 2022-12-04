@@ -1,39 +1,118 @@
-/* General Styles */
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap');
 
+/* General Styles */
 .App {
   text-align: center;
+  font-family: 'Fragment Mono', monospace;
+  font-size: 125%;
+  color: #4e57ef;
+}
+
+.wrapper {
+    max-width: 1260px;
+    width: 90%; 
+    margin: 0 auto;
+
+    /* border-radius: 12px; */
 }
 
 ul {
   list-style: none;
 }
 
-.menu {
-  border: 2px blue solid;
+p {
+  margin: 0 auto;
 }
 
+.menu {
+  /* border: 2px blue solid; */
+}
+
+/* the space that the notes populate */
 .noteZone {
-  border: 2px red solid;
+  border: 1px dashed #4e57ef;
+  height: 70vh;
+  margin: 20px auto;
+}
+
+/* Header */
+header {
+  display: flex;
+  height: 10vh;
+}
+
+/* Nav */
+/* Info Button*/
+.infoVisible {
+  display: block;
+}
+
+.infoInvisible {
+  display: none;
+}
+
+.info, .input {
+  padding: 10px;
+  width: 40px;
 }
 
 /* Input Form */
-.form-visible {
+.formVisible {
   display: block;
-  /* position: absolute; */
   z-index: 2;
-  /* background-color: yellow; */
   width: 500px;
 }
 
-.form-invisible {
+.formInvisible {
   display:none;
 } 
 
+h1 {
+  font-size: 1.5rem;
+}
+
+
+
+/* Main */
 /* Sticky Notes */
 .note {
-  background-color: yellow;
-  box-shadow: 10px 10px 5px;
+  border: 1px solid #4e57ef;
+  margin: 10px;
+  background-color: #cfd7ff;
+  box-shadow: 3px 4px 0px 0px #4e57ef;
   width: 200px;
-  /* position: absolute; */
+  padding: 10px;
   overflow-wrap: break-word;
 }
+
+button {
+  border: 1px solid #4e57ef;
+  background-color: #ffff;
+  box-shadow: 1px 1.25px 0px 0px #4e57ef;
+  color: #4e57ef;
+  margin: 10px;
+}
+
+button:hover {
+  border: 1px dotted #ffff;
+  background-color: #4e57ef;
+  box-shadow: 1px 1.25px 0px 0px #4e57ef;
+  color: #ffff;
+}
+
+input {
+  border: 1px solid #4e57ef;
+  padding: 5px 5px 7px 5px;
+  margin-left: 10px;
+}
+
+footer {
+  padding-block: 20px;
+}
+
+
+  /* background-image: url("../assets/xp.png");
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #ffff; */

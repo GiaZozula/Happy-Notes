@@ -11,6 +11,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [isInfoVisible, setIsInfoVisible] = useState(false);
 
   // the useEffect hook is used to request the data from firebase
   useEffect(() => {
@@ -76,43 +77,48 @@ function App() {
   // JSX
   return (
     <div className="App">
-      <header>
-        <h1>Pinboard App!</h1>
-      </header>
-      
-      <main>
-        <nav className = "menu">
-          <button onClick={() => setIsFormVisible(!isFormVisible)}>View New Note</button>
-
-          {/* this form will handle user input */}
-          <form className= {
-            isFormVisible ? 'form-visible' : 'form-invisible'
-            } 
-            action="submit">
-            <label htmlFor="inputForm">Add a new note!</label>
-            <input 
-            type = "text" 
-            id = "newItem" 
-            // set a minimum length for the input of characters
-            minLength = "1"
-            // set a maximum length for the input of characters
-            maxLength = "25"
-            // connecting onChange's event object to be used by the handleInputChange function 
-            onChange = {handleInputChange}
-            // binding the userInput state to the value attribute
-            value = {userInput}
-            />
-            <button onClick={handleSubmit}>Add Note</button>
-          </form>   
-        </nav>
-        
+      <div className="wrapper">
+        {/* Header */}
+        <header>
+          <nav className = "menu">
+            {/* info button */}
+            <button className='info' onClick={() => setIsInfoVisible(!isInfoVisible)}>ⓘ</button>
+            {/* input button */}
+            <button className='input' onClick={() => setIsFormVisible(!isFormVisible)}>⌨</button>
+            {/* this will display info regarding the app */}
+            {/* this ternary allows for info to be hidden and revealed */}
+            <p className={isInfoVisible ? 'infoVisable' : 'infoInvisible'}>built by gia using react + firebase</p>
+            {/* this form will handle user input */}
+            {/* this ternary allows for form to be hidden and revealed */}
+            <form className={isFormVisible ? 'formVisible' : 'formInvisible'} 
+              action="submit">
+              <label htmlFor="inputForm">Add a new note!</label>
+              <input 
+              type = "text" 
+              id = "newItem" 
+              // set a minimum length for the input of characters
+              minLength = "1"
+              // set a maximum length for the input of characters
+              maxLength = "25"
+              // connecting onChange's event object to be used by the handleInputChange function 
+              onChange = {handleInputChange}
+              // binding the userInput state to the value attribute
+              value = {userInput}
+              />
+              <button onClick={handleSubmit}>⇠</button>
+            </form>   
+          </nav>
+          <h1>Pinboard App!</h1>
+        </header>
+      {/* Main */}
+      <main>     
         <section className = "noteZone">
           <ul>
             {/* map through the items array, displaying each item */}
             {items.map((item) => {
               return (
                 <li className="note" key={item.key}>
-                  <button onClick={() => handleRemoveItem(item.key)}>X</button>
+                  <button onClick={() => handleRemoveItem(item.key)}>x</button>
                   <p onClick={handleInputChange}>{item.note}</p>
                   {/* This remove button will allow the user to delete specific notes */}
                 </li>
@@ -121,6 +127,10 @@ function App() {
           </ul>
         </section>
       </main>
+      <footer>
+        built by gia using react + firebase
+      </footer>
+      </div> {/* end of wrapper */}
     </div> // end of JSX return
   );
 }
