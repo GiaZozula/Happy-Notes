@@ -3,13 +3,17 @@ import firebase from './firebase.js';
 import {useState, useEffect} from 'react';
 import {getDatabase, ref, onValue, push, remove} from 'firebase/database';
 
-const App = () => {
+function App() {
   // pieces of state
   const [items, setItems] = useState([]);
   const [userInput, setUserInput] = useState('');
 
   // the useEffect hook is used to request the data from firebase
   useEffect(() => {
+    // variable that holds database content
+    const database = getDatabase(firebase);
+    // variable that references the database, specifically targeting the node of the item(note) we want to remove
+    const dbRef = ref(database);
 
     onValue(dbRef, (response) => {
       // variable that stores the new state
@@ -19,14 +23,16 @@ const App = () => {
       // val() is a firebase method
       const data = response.val();
 
+      const updatedDb = [];
+
       // for loop to access each individual item in the data object
       for (let key in data) {
         // inside the loop, we push each book name to the newState array in the onValue function
-        newState.push({key: key, note: data[key]});
+        updatedDb.push({key: key, note: data[key]});
       }
 
       // then, we call setItems to update the component's state using the local array newState
-      setItems(newState);
+      setItems(updatedDb);
 
     })
     // using an empty dependancy array in order to render this code only once after initializing 
@@ -56,14 +62,14 @@ const App = () => {
 
   // the item's id is taken as an arguement and then used by this function remove a specific note
   const handleRemoveItem = (itemId) => {
-    // variable that holds database content
-    const database = getDatabase(firebase);
-    // variable that references the database, specifically targeting the node of the item(note) we want to remove
-    const dbRef = ref(database, `/${itemId}`);
+  const database = getDatabase(firebase);
+  const dbRef = ref(database, `/${itemId}`)
 
-    // this uses the firebase remove() method to delete a speicific note based on its itemId
-    remove(dbRef)
+  // this uses the firebase remove() method to delete a speicific note based on its itemId
+  remove(dbRef)
   }
+
+
 
   // JSX
   return (
@@ -73,17 +79,19 @@ const App = () => {
       </header>
       <ul>
         {/* map through the items array, displaying each item */}
-        {items.map(item => {
+        {items.map((item) => {
           return (
             <li key={item.key}>
-              <p>{item.note} - {item.key}</p>
+              <p>{item.note}</p>
+               {/* This remove button will allow the user to delete specific notes */}
+              <button onClick={() => handleRemoveItem(item.key)}>Remove Note</button>
             </li>
           )
         })}
       </ul>
 
         {/* this form will handle user input */}
-      <form actions="submit">
+      <form action="submit">
         <label htmlFor="newItem">Add a new note!</label>
         <input 
         type="text" 
@@ -94,14 +102,7 @@ const App = () => {
         value={userInput}
         />
         <button onClick={handleSubmit}>Add Note</button>
-      </form>
-
-      {/* This remove button will allow the user to delete specific notes */}
-      <li key={item.key}>
-        <p>{item.note}</p>
-        {/* using a deffered function */}
-        <button onClick={() => handleRemoveItem(item.key)}>Remove Note</button>
-      </li>
+      </form>    
     </div> // end of JSX return
   );
 }
