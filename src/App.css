@@ -1,3 +1,5 @@
+/* General Styles */
+
 .App {
   text-align: center;
 }
@@ -6,14 +8,32 @@ ul {
   list-style: none;
 }
 
+.menu {
+  border: 2px blue solid;
+}
+
+.noteZone {
+  border: 2px red solid;
+}
+
+/* Input Form */
 .form-visible {
   display: block;
+  /* position: absolute; */
+  z-index: 2;
+  /* background-color: yellow; */
+  width: 500px;
 }
 
 .form-invisible {
   display:none;
 } 
 
-/* .note {
+/* Sticky Notes */
+.note {
   background-color: yellow;
-} */
+  box-shadow: 10px 10px 5px;
+  width: 200px;
+  /* position: absolute; */
+  overflow-wrap: break-word;
+}

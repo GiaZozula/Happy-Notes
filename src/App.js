@@ -80,43 +80,47 @@ function App() {
         <h1>Pinboard App!</h1>
       </header>
       
-      <ul>
-        {/* map through the items array, displaying each item */}
-        {items.map((item) => {
-          return (
-            <li key={item.key}>
-              <p>{item.note}</p>
-               {/* This remove button will allow the user to delete specific notes */}
-              <button onClick={() => handleRemoveItem(item.key)}>X</button>
-            </li>
-          )
-        })}
-      </ul>
+      <main>
+        <nav className = "menu">
+          <button onClick={() => setIsFormVisible(!isFormVisible)}>View New Note</button>
 
-      <button onClick={() => setIsFormVisible(!isFormVisible)}>View New Note</button>
-
-        {/* this form will handle user input */}
-      <form className= {
-        isFormVisible ? 'form-visible' : 'form-invisible'
-        } 
-        action="submit">
-        <label htmlFor="inputForm">Add a new note!</label>
-        <input 
-        type = "text" 
-        id = "newItem" 
-        // set a minimum length for the input of characters
-        minLength = "1"
-        // set a maximum length for the input of characters
-        maxLength = "25"
-        // connecting onChange's event object to be used by the handleInputChange function 
-        onChange = {handleInputChange}
-        // binding the userInput state to the value attribute
-        value = {userInput}
-        />
-        <button onClick={handleSubmit}>Add Note</button>
-      </form>    
-
-
+          {/* this form will handle user input */}
+          <form className= {
+            isFormVisible ? 'form-visible' : 'form-invisible'
+            } 
+            action="submit">
+            <label htmlFor="inputForm">Add a new note!</label>
+            <input 
+            type = "text" 
+            id = "newItem" 
+            // set a minimum length for the input of characters
+            minLength = "1"
+            // set a maximum length for the input of characters
+            maxLength = "25"
+            // connecting onChange's event object to be used by the handleInputChange function 
+            onChange = {handleInputChange}
+            // binding the userInput state to the value attribute
+            value = {userInput}
+            />
+            <button onClick={handleSubmit}>Add Note</button>
+          </form>   
+        </nav>
+        
+        <section className = "noteZone">
+          <ul>
+            {/* map through the items array, displaying each item */}
+            {items.map((item) => {
+              return (
+                <li className="note" key={item.key}>
+                  <button onClick={() => handleRemoveItem(item.key)}>X</button>
+                  <p onClick={handleInputChange}>{item.note}</p>
+                  {/* This remove button will allow the user to delete specific notes */}
+                </li>
+              )
+            })}
+          </ul>
+        </section>
+      </main>
     </div> // end of JSX return
   );
 }
