@@ -7,6 +7,7 @@ function App() {
   // pieces of state
   const [items, setItems] = useState([]);
   const [userInput, setUserInput] = useState('');
+  const [noteForm, setNoteForm] = useState(false);
 
   // the useEffect hook is used to request the data from firebase
   useEffect(() => {
@@ -69,7 +70,16 @@ function App() {
   remove(dbRef)
   }
 
-
+  // Andres gave me some insight into how he was handling css changes in his project
+  const noteSwitcher = () => {
+    if (setNoteForm(false)) {
+      setNoteForm(true);
+    } else {
+      setNoteForm(false);
+      console.log('pressing')
+    }
+  }
+    
 
   // JSX
   return (
@@ -77,6 +87,7 @@ function App() {
       <header>
         <h1>Pinboard App!</h1>
       </header>
+      
       <ul>
         {/* map through the items array, displaying each item */}
         {items.map((item) => {
@@ -84,7 +95,7 @@ function App() {
             <li key={item.key}>
               <p>{item.note}</p>
                {/* This remove button will allow the user to delete specific notes */}
-              <button onClick={() => handleRemoveItem(item.key)}>Remove Note</button>
+              <button onClick={() => handleRemoveItem(item.key)}>X</button>
             </li>
           )
         })}
@@ -97,9 +108,9 @@ function App() {
         type = "text" 
         id = "newItem" 
         // set a minimum length for the input of characters
-        minlength = "1"
+        minLength = "1"
         // set a maximum length for the input of characters
-        maxlength = "25"
+        maxLength = "25"
         // connecting onChange's event object to be used by the handleInputChange function 
         onChange = {handleInputChange}
         // binding the userInput state to the value attribute
@@ -107,6 +118,11 @@ function App() {
         />
         <button onClick={handleSubmit}>Add Note</button>
       </form>    
+
+      {/* {numberOfCookies === 1 ? {numberOfCookies} : We have no cookies} */}
+
+
+      <button onClick={noteSwitcher}>View New Note</button>
     </div> // end of JSX return
   );
 }
