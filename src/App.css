@@ -25,27 +25,24 @@ p {
   margin: 0 auto;
 }
 
-.menu {
-  /* border: 2px blue solid; */
-}
-
 /* the space that the notes populate */
 .noteZone {
   border: 1px dashed #4e57ef;
   height: 70vh;
-  margin: 20px auto;
+  margin: -5px auto;
 }
 
 /* Header */
 header {
   display: flex;
   height: 10vh;
+  margin: 30px 0 0 -10px;
 }
 
 /* Nav */
 /* Info Button*/
 .infoVisible {
-  display: block;
+  position: fixed;
 }
 
 .infoInvisible {
@@ -55,22 +52,46 @@ header {
 .info, .input {
   padding: 10px;
   width: 40px;
+  position: fixed;
+}
+
+.info {
+  margin-left: 80px;
+}
+
+/* H1 */
+h1 {
+  font-size: 1.5rem;
+  margin-left: 150px;
+  position: fixed;
 }
 
 /* Input Form */
 .formVisible {
-  display: block;
-  z-index: 2;
-  width: 500px;
+  display: flex;
+  
+  /* border: 2px red solid; */
+  margin: 60px 0 0 10px;
 }
 
 .formInvisible {
   display:none;
-} 
-
-h1 {
-  font-size: 1.5rem;
 }
+
+.inputBox {
+  width: 200px;
+  margin: 1px 0 0 10px;
+  padding: 7px 0 13px 0;
+}
+
+.submitButton {
+  position: fixed;
+  margin-left: 410px;
+  margin-top: .5px;
+  padding: 9.5px 11.5px 9.5px 11.5px;
+}
+
+
 
 
 
