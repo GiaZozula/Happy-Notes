@@ -40,6 +40,7 @@ p {
 
 .noteZone ul {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   margin: 0 0;
   padding: 0;
@@ -143,7 +144,7 @@ footer {
 }
 
 .xClose {
-  padding: 1px 6px 1px 6px;
+  padding: 0px 6px 2px 6px;
 }
 
   /* background-image: url("../assets/xp.png");
