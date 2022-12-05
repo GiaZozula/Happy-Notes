@@ -21,9 +21,6 @@ function App() {
     const dbRef = ref(database);
 
     onValue(dbRef, (response) => {
-      // variable that stores the new state
-      const newState = [];
-
       // stores the response from firebase
       // val() is a firebase method
       const data = response.val();
@@ -125,7 +122,7 @@ function App() {
         </section>
       </main>
       <footer className={isInfoVisible ? 'infoVisible' : 'infoInvisible'}>
-        built by gia using react + firebase
+        ❀ built by gia ❀ using react + firebase ❀
       </footer>
       </div> {/* end of wrapper */}
     </div> // end of JSX return
