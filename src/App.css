@@ -54,7 +54,7 @@ header {
 }
 
 /* Nav */
-/* Info Button*/
+/* Info input form*/
 .infoVisible {
   position: fixed;
 }
@@ -63,15 +63,6 @@ header {
   display: none;
 }
 
-.info, .input {
-  padding: 10px;
-  width: 40px;
-  position: fixed;
-}
-
-.info {
-  margin-left: 80px;
-}
 
 /* H1 */
 h1 {
@@ -84,7 +75,6 @@ h1 {
 .formVisible {
   display: flex;
   position: fixed;
-  /* border: 2px red solid; */
   margin: 60px 0 0 10px;
 }
 
@@ -98,12 +88,59 @@ h1 {
   padding: 10px;
 }
 
+/* Buttons Styling */
+.info, .input {
+  padding: 10px;
+  width: 40px;
+  position: fixed;
+}
+
+.info {
+  margin-left: 80px;
+}
+
+.countButton {
+  margin: 0 0 0 1000px;
+  padding: 0 5px 5px 5px;
+  position: fixed;
+  /* border: 2px dashed #4e57ef;
+  border-radius: 120px; */
+  box-shadow: none;
+  font-size: 5rem;
+}
+
+.speechVisible {
+  display: block;
+  position: fixed;
+  margin: 0 0 0 870px;
+  color: #cfd7ff;
+  transform:scale(14, 8);
+}
+
+.speechInvisible {
+  display: none;
+}
+
+.counterVisible {
+  display: block;
+  font-size: .9rem;
+  position: fixed;
+  margin: 20px 0 0 780px;
+  z-index: 1; 
+}
+
+.counterInvisible {
+  display: none;
+}
+
+
 .submitButton {
   position: fixed;
   margin-left: 430px;
   margin-top: .5px;
   padding: 9.5px 11.5px 9.5px 11.5px;
 }
+
 
 
 /* Main */

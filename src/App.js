@@ -10,6 +10,7 @@ function App() {
   const [isFormVisible, setIsFormVisible] = useState(true);
   const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [counter, setCounter] = useState(1);
+  const [isCounterVisible, setCounterVisible] = useState(false);
 
   // the useEffect hook is used to request the data from firebase
   useEffect(() => {
@@ -108,6 +109,10 @@ function App() {
               {/* this will display info regarding the app */}
               {/* this ternary allows for info to be hidden and revealed */}
               <h1 className={isInfoVisible ? 'infoVisible' : 'infoInvisible'}>Pinboard App</h1>
+              {/* count button */}
+              <button className='countButton' onClick={() => setCounterVisible(!isCounterVisible)}>☺</button>
+              <p className={isCounterVisible ? 'counterVisible' : 'counterInvisible'}>You have {30 - counter} notes left!</p>
+              <p className={isCounterVisible ? 'speechVisible' : 'speechInvisible'}>🗨</p>
         </header>
       {/* Main */}
       <main>     
