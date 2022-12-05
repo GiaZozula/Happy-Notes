@@ -1,6 +1,3 @@
-// I initially struggled a bit with how to properly use CSS with states etc., but after discussing with Andres a bit and looking at https://blog.logrocket.com/create-responsive-navbar-react-css/ it became a lot clearer!
-
-
 import './App.css';
 import firebase from './firebase.js';
 import {useState, useEffect} from 'react';
@@ -12,6 +9,7 @@ function App() {
   const [userInput, setUserInput] = useState('');
   const [isFormVisible, setIsFormVisible] = useState(true);
   const [isInfoVisible, setIsInfoVisible] = useState(false);
+  const [counter, setCounter] = useState(1);
 
   // the useEffect hook is used to request the data from firebase
   useEffect(() => {
@@ -60,16 +58,23 @@ function App() {
 
     // after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
     setUserInput('');
+
+    // add one to counter everytime a note is deleted
+    setCounter(counter + 1)
   }
 
   // the item's id is taken as an arguement and then used by this function remove a specific note
   const handleRemoveItem = (itemId) => {
-  const database = getDatabase(firebase);
-  const dbRef = ref(database, `/${itemId}`)
+    const database = getDatabase(firebase);
+    const dbRef = ref(database, `/${itemId}`)
 
-  // this uses the firebase remove() method to delete a speicific note based on its itemId
-  remove(dbRef)
+    // this uses the firebase remove() method to delete a speicific note based on its itemId
+    remove(dbRef)
+    
+    // subtract one from counter everytime a note is deleted
+    setCounter(counter - 1)
   }
+
 
   // JSX
   return (
