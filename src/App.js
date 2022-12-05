@@ -10,7 +10,7 @@ function App() {
   // pieces of state
   const [items, setItems] = useState([]);
   const [userInput, setUserInput] = useState('');
-  const [isFormVisible, setIsFormVisible] = useState(false);
+  const [isFormVisible, setIsFormVisible] = useState(true);
   const [isInfoVisible, setIsInfoVisible] = useState(false);
 
   // the useEffect hook is used to request the data from firebase
@@ -95,7 +95,7 @@ function App() {
               // set a minimum length for the input of characters
               minLength="1"
               // set a maximum length for the input of characters
-              maxLength="25"
+              maxLength="60"
               // connecting onChange's event object to be used by the handleInputChange function 
               onChange={handleInputChange}
               // binding the userInput state to the value attribute
@@ -115,7 +115,7 @@ function App() {
             {items.map((item) => {
               return (
                 <li className="note" key={item.key}>
-                  <button onClick={() => handleRemoveItem(item.key)}>x</button>
+                  <button className="xClose" onClick={() => handleRemoveItem(item.key)}>x</button>
                   <p onClick={handleInputChange}>{item.note}</p>
                   {/* This remove button will allow the user to delete specific notes */}
                 </li>
