@@ -133,6 +133,11 @@ button:hover, button:focus {
   color: #ffff;
 }
 
+button:active {
+  background-color: #cfd7ff;
+  box-shadow: inset -2px -2px #cfd7ff;
+}
+
 input {
   border: 1px solid #4e57ef;
   padding: 5px 5px 7px 5px;
