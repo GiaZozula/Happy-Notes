@@ -11,7 +11,7 @@ function App() {
   const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [counter, setCounter] = useState(1);
   const [isCounterVisible, setCounterVisible] = useState(false);
-  const [isDisabled, setDisabled] = useState(false);
+  // const [isDisabled, setDisabled] = useState(false);
 
   // the useEffect hook is used to request the data from firebase
   useEffect(() => {
