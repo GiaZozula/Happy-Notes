@@ -1,3 +1,5 @@
+// This app currently has several bugs surrounding the counter that I haven't figured out yet. One particularly strange one involves the counter having 3 extra counts once the limit is reached? So weird! 
+
 import './App.css';
 import firebase from './firebase.js';
 import {useState, useEffect} from 'react';
@@ -24,7 +26,6 @@ function App() {
       // stores the response from firebase
       // val() is a firebase method
       const data = response.val();
-
       const updatedDb = [];
 
       // for loop to access each individual item in the data object
@@ -61,20 +62,16 @@ function App() {
     } else {
     // push the userInput state (with its bound value property) to the database
     push(dbRef, userInput)
-    }
-   
+    
+    // add one to counter everytime a note is added
+    setCounter(counter + 1)
+      console.log(counter)
 
     // after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
     setUserInput('');
-
-    // add one to counter everytime a note is deleted
-    setCounter(counter + 1)
-    
-    // call disableSwitch after each submit to check if counter is maxxxxed
-    disableSwitch();
-     console.log(userInput)
-
-
+        // call disableSwitch after each submit to check if counter is maxxxxed out
+    disableSwitch();  
+    }    
   }
 
   // the item's id is taken as an arguement and then used by this function remove a specific note
@@ -87,16 +84,21 @@ function App() {
     
     // subtract one from counter everytime a note is deleted
     setCounter(counter - 1)
+
+    console.log(counter)
+       // call disableSwitch after each submit to check if counter is maxxxxed out
+    disableSwitch();
+    
   }
 
   // This disables the input if the counter reaches the specified number
   const disableSwitch = () => {
-    if (counter === 24) {
+    if (counter >= 23) {
       setDisabled(true);
-    } 
+    } else if (counter < 23) {
+      setDisabled(false);
+    }
   }
-  
-  // console.log(counter);
 
   // JSX
   return (
