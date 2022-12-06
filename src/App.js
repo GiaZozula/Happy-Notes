@@ -55,8 +55,14 @@ function App() {
     // create a variable that references this database
     const dbRef = ref(database);
 
+    // check to make sure there is a character in the input field before pushing to firebase
+    if (userInput == '') {
+    alert('pls input at least one character, ty <3');
+    } else {
     // push the userInput state (with its bound value property) to the database
     push(dbRef, userInput)
+    }
+   
 
     // after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
     setUserInput('');
@@ -66,6 +72,9 @@ function App() {
     
     // call disableSwitch after each submit to check if counter is maxxxxed
     disableSwitch();
+     console.log(userInput)
+
+
   }
 
   // the item's id is taken as an arguement and then used by this function remove a specific note
@@ -80,17 +89,14 @@ function App() {
     setCounter(counter - 1)
   }
 
+  // This disables the input if the counter reaches the specified number
   const disableSwitch = () => {
     if (counter === 24) {
       setDisabled(true);
-      console.log('set disabled tru');
     } 
   }
   
-  console.log(isDisabled);
- 
-  
-  console.log(counter);
+  // console.log(counter);
 
   // JSX
   return (
@@ -111,9 +117,10 @@ function App() {
               <label htmlFor="inputForm">Add a new note!</label>
               <input type="text" id="newItem" className={isDisabled ? 'inputBoxDisabled' : 'inputBox'} 
               // set a minimum length for the input of characters (does not seem to be functioning currenlty, not sure why)
-              minlength="1"
+              minLength="1"
               // set a maximum length for the input of characters
-              maxlength="16"
+              maxLength="16"
+              required
               // connecting onChange's event object to be used by the handleInputChange function 
               onChange={handleInputChange}
               // binding the userInput state to the value attribute
