@@ -15,8 +15,6 @@
     max-width: 1260px;
     width: 90%; 
     margin: 0 auto;
-
-    /* border-radius: 12px; */
 }
 
 ul {
@@ -87,10 +85,19 @@ h1 {
   display:none;
 }
 
-.inputBox {
+.inputBox, .inputBoxDisabled {
   width: 200px;
   margin: 1px 0 0 10px;
   padding: 10px;
+  border: 1px solid #4e57ef;
+  margin-left: 10px;
+}
+
+.inputBoxDisabled {
+  /* background-color: #4e57ef; */
+  border: 1px dashed #cfd7ff;
+  background-color: #ffff;
+  cursor: not-allowed;
 }
 
 /* Buttons Styling */
@@ -140,12 +147,16 @@ h1 {
 
 
 .submitButton {
+  display: block;
   position: fixed;
   margin-left: 430px;
   margin-top: .5px;
   padding: 9.5px 11.5px 9.5px 11.5px;
 }
 
+.submitButtonDisabled {
+  display: none;
+}
 
 
 /* Main */
@@ -179,12 +190,6 @@ button:hover, button:focus {
 button:active {
   background-color: #cfd7ff;
   box-shadow: inset -2px -2px #cfd7ff;
-}
-
-input {
-  border: 1px solid #4e57ef;
-  padding: 5px 5px 7px 5px;
-  margin-left: 10px;
 }
 
 footer {

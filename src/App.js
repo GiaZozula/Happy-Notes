@@ -11,7 +11,7 @@ function App() {
   const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [counter, setCounter] = useState(1);
   const [isCounterVisible, setCounterVisible] = useState(false);
-  // const [isDisabled, setDisabled] = useState(false);
+  const [isDisabled, setDisabled] = useState(false);
 
   // the useEffect hook is used to request the data from firebase
   useEffect(() => {
@@ -63,6 +63,9 @@ function App() {
 
     // add one to counter everytime a note is deleted
     setCounter(counter + 1)
+    
+    // call disableSwitch after each submit to check if counter is maxxxxed
+    disableSwitch();
   }
 
   // the item's id is taken as an arguement and then used by this function remove a specific note
@@ -77,16 +80,15 @@ function App() {
     setCounter(counter - 1)
   }
 
-  // const disableSwitch = () => {
-  //   if (counter === (24)) {
-  //     setDisabled = true;
-  //     console.log('set disabled tru');
-  //   } else {
-  //     // setDisabled(false);
-  //   }
-  // }
+  const disableSwitch = () => {
+    if (counter === 24) {
+      setDisabled(true);
+      console.log('set disabled tru');
+    } 
+  }
   
-  // disableSwitch();
+  console.log(isDisabled);
+ 
   
   console.log(counter);
 
@@ -107,18 +109,18 @@ function App() {
               <form className={isFormVisible ? 'formVisible' : 'formInvisible'} 
               action="submit">
               <label htmlFor="inputForm">Add a new note!</label>
-              <input type="text" id="newItem" className="inputBox"
+              <input type="text" id="newItem" className={isDisabled ? 'inputBoxDisabled' : 'inputBox'} 
               // set a minimum length for the input of characters (does not seem to be functioning currenlty, not sure why)
-              minLength="1"
+              minlength="1"
               // set a maximum length for the input of characters
-              maxLength="16"
+              maxlength="16"
               // connecting onChange's event object to be used by the handleInputChange function 
               onChange={handleInputChange}
               // binding the userInput state to the value attribute
               value={userInput}
-              // disabled={isDisabled}
+              disabled={isDisabled}
               />
-              <button className="submitButton" onClick={handleSubmit}>⇠</button>
+              <button className={isDisabled ? 'submitButtonDisabled' : 'submitButton'} onClick={handleSubmit}>⇠</button>
               </form>   
               {/* this will display info regarding the app */}
               {/* this ternary allows for info to be hidden and revealed */}
@@ -164,6 +166,7 @@ export default App;
 // add a visual/audio cue for when the character limit for the input is reached
 
 // PSEUDO CODE for MEGA STRETCH GOALS
+// set up another key node for the counter on firebase (check Safi's code along), have it be checked in the for loop with the other keys
 // add the ability to drag and drop notes
 // change cursors for dragging and dropping
 // add basic animations for picking up and dropping notes
