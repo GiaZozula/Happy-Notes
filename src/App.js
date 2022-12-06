@@ -11,6 +11,7 @@ function App() {
   const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [counter, setCounter] = useState(1);
   const [isCounterVisible, setCounterVisible] = useState(false);
+  const [isDisabled, setDisabled] = useState(false);
 
   // the useEffect hook is used to request the data from firebase
   useEffect(() => {
@@ -76,6 +77,13 @@ function App() {
     setCounter(counter - 1)
   }
 
+  if (counter === (30)) {
+    // setDisabled(true);
+    console.log('set disabled tru');
+  } 
+
+
+  console.log(counter);
 
   // JSX
   return (
@@ -103,6 +111,7 @@ function App() {
               onChange={handleInputChange}
               // binding the userInput state to the value attribute
               value={userInput}
+              disabled = {(isDisabled)? "disabled" : ""}
               />
               <button className="submitButton" onClick={handleSubmit}>⇠</button>
               </form>   
