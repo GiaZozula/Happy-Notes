@@ -30,11 +30,15 @@ p {
 /* the space that the notes populate */
 .noteZone {
   border: 1px dashed #4e57ef;
-  width: 976px;
+  width: 1000px;
   height: 80vh;
   margin: -5px auto;
   padding: 10px;
   display: flex;
+  /* position: fixed;
+  left: 50%;
+  transform: translateX(-50%); */
+  z-index: -1;
   flex-wrap: wrap;
 }
 
@@ -44,6 +48,7 @@ p {
   flex-wrap: wrap;
   margin: 0 0;
   padding: 0;
+  height: 80vh;
 }
 
 /* Header */
@@ -101,12 +106,12 @@ h1 {
 
 .countButton {
   margin: 0 0 0 1000px;
-  padding: 0 5px 5px 5px;
+  padding: 0 5px 20px 5px;
   position: fixed;
-  /* border: 2px dashed #4e57ef;
-  border-radius: 120px; */
   box-shadow: none;
   font-size: 5rem;
+  box-shadow: 1px 1.25px 0px 0px #4e57ef;
+  line-height: 80px;
 }
 
 .speechVisible {
@@ -151,6 +156,7 @@ h1 {
   background-color: #cfd7ff;
   box-shadow: 3px 4px 0px 0px #4e57ef;
   width: 200px;
+  height: 80px;
   padding: 10px;
   overflow-wrap: break-word;
 }

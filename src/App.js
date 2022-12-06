@@ -77,12 +77,17 @@ function App() {
     setCounter(counter - 1)
   }
 
-  if (counter === (30)) {
-    // setDisabled(true);
-    console.log('set disabled tru');
-  } 
-
-
+  // const disableSwitch = () => {
+  //   if (counter === (24)) {
+  //     setDisabled = true;
+  //     console.log('set disabled tru');
+  //   } else {
+  //     // setDisabled(false);
+  //   }
+  // }
+  
+  // disableSwitch();
+  
   console.log(counter);
 
   // JSX
@@ -103,15 +108,15 @@ function App() {
               action="submit">
               <label htmlFor="inputForm">Add a new note!</label>
               <input type="text" id="newItem" className="inputBox"
-              // set a minimum length for the input of characters
+              // set a minimum length for the input of characters (does not seem to be functioning currenlty, not sure why)
               minLength="1"
               // set a maximum length for the input of characters
-              maxLength="60"
+              maxLength="16"
               // connecting onChange's event object to be used by the handleInputChange function 
               onChange={handleInputChange}
               // binding the userInput state to the value attribute
               value={userInput}
-              disabled = {(isDisabled)? "disabled" : ""}
+              // disabled={isDisabled}
               />
               <button className="submitButton" onClick={handleSubmit}>⇠</button>
               </form>   
@@ -120,7 +125,7 @@ function App() {
               <h1 className={isInfoVisible ? 'infoVisible' : 'infoInvisible'}>Pinboard App</h1>
               {/* count button */}
               <button className='countButton' onClick={() => setCounterVisible(!isCounterVisible)}>☺</button>
-              <p className={isCounterVisible ? 'counterVisible' : 'counterInvisible'}>You have {30 - counter} notes left!</p>
+              <p className={isCounterVisible ? 'counterVisible' : 'counterInvisible'}>You have {24 - counter} notes left!</p>
               <p className={isCounterVisible ? 'speechVisible' : 'speechInvisible'}>🗨</p>
         </header>
       {/* Main */}
@@ -152,27 +157,16 @@ export default App;
 
 
 // PSEUDO CODE for MVP
-
-// Create a state to store Firebase data (items)
-// Create a state to store user's input data (userInput)
-// Use an event object (from onChange or something) attached to an input of some kind to track the user's input and store it in the userInput state (will likely use a button so that the function is only called on submit)
-// On change is listening to input (as soon as they type even a single letter), and then On submit, theres even more one
-// On value tiggers once on load, and then it will also update the database
-// Bind the HTML value attribute of the input to the component's state
-// Call the function on submit and at that point access/update the database 
-// Render everything to the page, ideally styled as post-it notes or something similar
+// all thats left is to do props...
 
 // error handling --> 
 // set limit for how many notes one can have?
 // add a visual/audio cue for when the character limit for the input is reached
 
-// PSEUDO CODE for STRETCH GOALS
-// add basic visuals/styling
-// add an 'X' in the corner of the note that will cause it to be removed
+// PSEUDO CODE for MEGA STRETCH GOALS
 // add the ability to drag and drop notes
 // change cursors for dragging and dropping
 // add basic animations for picking up and dropping notes
 // add basic sounds for picking up and dropping notes
-// add some kind of colour option/randomized generator for new notes
 // add a 'clear all' button that gets rid of all current notes
 // add the ability to store images on notes with firestore
