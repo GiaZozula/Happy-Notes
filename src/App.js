@@ -57,7 +57,7 @@ function App() {
     const dbRef = ref(database);
 
     // check to make sure there is a character in the input field before pushing to firebase
-    if (userInput == '') {
+    if (userInput === '') {
     alert('pls input at least one character, ty <3');
     } else {
     // push the userInput state (with its bound value property) to the database
