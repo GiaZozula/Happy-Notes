@@ -1,5 +1,9 @@
+/* Found it a bit hard to keep this CSS file organized, apologies if its confusing! */
+
+
 /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap');
+
 
 /* General Styles */
 .App {
@@ -25,77 +29,6 @@ p {
   margin: 0 auto;
 }
 
-/* the space that the notes populate */
-.noteZone {
-  border: 1px dashed #4e57ef;
-  width: 1000px;
-  height: 80vh;
-  margin: -5px auto;
-  padding: 10px;
-  display: flex;
-  z-index: -1;
-  flex-wrap: wrap;
-}
-
-.noteZone ul {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin: 0 0;
-  padding: 0;
-  height: 80vh;
-}
-
-/* Header */
-header {
-  display: flex;
-  height: 10vh;
-  margin: 30px 0 0 -10px;
-}
-
-/* Nav */
-/* Info input form*/
-.infoVisible {
-  position: fixed;
-}
-
-.infoInvisible {
-  display: none;
-}
-
-
-/* H1 */
-h1 {
-  font-size: 1.5rem;
-  margin-left: 150px;
-  position: fixed;
-}
-
-/* Input Form */
-.formVisible {
-  display: flex;
-  position: fixed;
-  margin: 60px 0 0 10px;
-}
-
-.formInvisible {
-  display:none;
-}
-
-.inputBox, .inputBoxDisabled {
-  width: 200px;
-  margin: 1px 0 0 10px;
-  padding: 10px;
-  border: 1px solid #4e57ef;
-  margin-left: 10px;
-}
-
-.inputBoxDisabled {
-  /* background-color: #4e57ef; */
-  border: 1px dashed #cfd7ff;
-  background-color: #ffff;
-  cursor: not-allowed;
-}
 
 /* Buttons Styling */
 .info, .input {
@@ -142,7 +75,6 @@ h1 {
   display: none;
 }
 
-
 .submitButton {
   display: block;
   position: fixed;
@@ -153,20 +85,6 @@ h1 {
 
 .submitButtonDisabled {
   display: none;
-}
-
-
-/* Main */
-/* Sticky Notes */
-.note {
-  border: 1px solid #4e57ef;
-  margin: 10px;
-  background-color: #cfd7ff;
-  box-shadow: 3px 4px 0px 0px #4e57ef;
-  width: 200px;
-  height: 80px;
-  padding: 10px;
-  overflow-wrap: break-word;
 }
 
 button {
@@ -189,15 +107,69 @@ button:active {
   box-shadow: inset -2px -2px #cfd7ff;
 }
 
-footer {
-  padding-block: 20px;
-}
-
 .xClose {
   padding: 0px 6px 2px 6px;
 }
 
-/* Instructions */
+.legButton {
+  margin: 0 0 0 140px;
+  padding: 0 10px 0 10px;
+}
+
+
+/* Header */
+header {
+  display: flex;
+  height: 10vh;
+  margin: 30px 0 0 -10px;
+}
+
+/* Nav */
+/* Info input form*/
+.infoVisible {
+  position: fixed;
+}
+
+.infoInvisible {
+  display: none;
+}
+
+
+h1 {
+  font-size: 1.5rem;
+  margin-left: 150px;
+  position: fixed;
+}
+
+/* Input Form */
+.formVisible {
+  display: flex;
+  position: fixed;
+  margin: 60px 0 0 10px;
+}
+
+.formInvisible {
+  display:none;
+}
+
+.inputBox, .inputBoxDisabled {
+  width: 200px;
+  margin: 1px 0 0 10px;
+  padding: 10px;
+  border: 1px solid #4e57ef;
+  margin-left: 10px;
+}
+
+.inputBoxDisabled {
+  /* background-color: #4e57ef; */
+  border: 1px dashed #cfd7ff;
+  background-color: #ffff;
+  cursor: not-allowed;
+}
+
+
+/* Main */
+/* Instructions Legend */
 .legend {
   display: block;
   position:fixed;
@@ -223,18 +195,44 @@ footer {
   display: flex;
 }
 
-.legButton {
-  margin: 0 0 0 140px;
-  padding: 0 10px 0 10px;
-}
-
 .noLegend {
   display: none;
 }
 
+/* the space that the notes populate */
+.noteZone {
+  border: 1px dashed #4e57ef;
+  width: 1000px;
+  height: 80vh;
+  margin: -5px auto;
+  padding: 10px;
+  display: flex;
+  z-index: -1;
+  flex-wrap: wrap;
+}
 
+.noteZone ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0 0;
+  padding: 0;
+  height: 80vh;
+}
 
-  /* background-image: url("../assets/xp.png");
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: #ffff; */
+/* Sticky Notes */
+.note {
+  border: 1px solid #4e57ef;
+  margin: 10px;
+  background-color: #cfd7ff;
+  box-shadow: 3px 4px 0px 0px #4e57ef;
+  width: 200px;
+  height: 80px;
+  padding: 10px;
+  overflow-wrap: break-word;
+}
+
+/* Footer */
+footer {
+  padding-block: 20px;
+}

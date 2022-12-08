@@ -1,20 +1,33 @@
-// This app currently has several bugs surrounding the counter that I haven't figured out yet. One particularly strange one involves the counter having 3 extra counts once the limit is reached? So weird! 
+// This app currently has several bugs surrounding the counter that I haven't figured out yet. Aside from its value not being stored on a seperate node on firebase, there is one particularly strange issue that I couldn't figure out. 
+
+// When adding new notes, the counter works as it should. Same goes for deleting notes. HOWEVER, when it reaches the max amount, for some reason my isDisabled state doesn't work as I'd hope! I think I'm missing something basic with the logic/math but I've spent too many hours tickering with it to go on. 
+
+// Anywho, if you have any insight into why this is happening I'd LOVE to know why!!!  
+
+// Otherwise, I managed to get the basic MVP done! I would've like to have moved everything into components and to make it super-duper responsive, but I didn't end up having enough time. I will add media queries and reorganize this code later. I'd also love any feedback if there are any accessibility issues that I'm missing!
+
+// Thank you sm for looking :) ❤
 
 import './App.css';
 import firebase from './firebase.js';
 import {useState, useEffect} from 'react';
 import {getDatabase, ref, onValue, push, remove} from 'firebase/database';
 import Instructions from './Instructions.js';
+import InputForm from './InputForm';
 
 function App() {
   // pieces of state
   const [items, setItems] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [isFormVisible, setIsFormVisible] = useState(true);
-  const [isInfoVisible, setIsInfoVisible] = useState(false);
+  const [isInfoVisible, setIsInfoVisible] = useState(true);
   const [counter, setCounter] = useState(1);
-  const [isCounterVisible, setCounterVisible] = useState(false);
+  const [isCounterVisible, setCounterVisible] = useState(true);
   const [isDisabled, setDisabled] = useState(false);
+
+  // variable that stores the maximumum number of notes
+  let maxCount = 24;
+  let countDown = (maxCount - counter);
 
   // the useEffect hook is used to request the data from firebase
   useEffect(() => {
@@ -22,22 +35,18 @@ function App() {
     const database = getDatabase(firebase);
     // variable that references the database, specifically targeting the node of the item(note) we want to remove
     const dbRef = ref(database);
-
+    // stores the response from firebase
     onValue(dbRef, (response) => {
-      // stores the response from firebase
       // val() is a firebase method
       const data = response.val();
       const updatedDb = [];
-
       // for loop to access each individual item in the data object
       for (let key in data) {
         // inside the loop, we push each book name to the newState array in the onValue function
         updatedDb.push({key: key, note: data[key]});
       }
-
       // then, we call setItems to update the component's state using the local array newState
       setItems(updatedDb);
-
     })
     // using an empty dependancy array in order to render this code only once after initializing 
   }, [])
@@ -51,27 +60,22 @@ function App() {
   const handleSubmit = (e) => {
     // prevent default browser refresh after form submission
     e.preventDefault();
-
     // create a database variable containing the imported firebase config
     const database = getDatabase(firebase);
     // create a variable that references this database
     const dbRef = ref(database);
-
+    // call disableSwitch after each submit to check if counter is maxxxxed out
+    disableSwitch();  
     // check to make sure there is a character in the input field before pushing to firebase
     if (userInput === '') {
     alert('pls input at least one character, ty <3');
     } else {
     // push the userInput state (with its bound value property) to the database
-    push(dbRef, userInput)
-    
+    push(dbRef, userInput)    
     // add one to counter everytime a note is added
     setCounter(counter + 1)
-      console.log(counter)
-
     // after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
     setUserInput('');
-        // call disableSwitch after each submit to check if counter is maxxxxed out
-    disableSwitch();  
     }    
   }
 
@@ -79,24 +83,19 @@ function App() {
   const handleRemoveItem = (itemId) => {
     const database = getDatabase(firebase);
     const dbRef = ref(database, `/${itemId}`)
-
     // this uses the firebase remove() method to delete a speicific note based on its itemId
-    remove(dbRef)
-    
+    remove(dbRef) 
     // subtract one from counter everytime a note is deleted
     setCounter(counter - 1)
-
-    console.log(counter)
-       // call disableSwitch after each submit to check if counter is maxxxxed out
+    // call disableSwitch after each submit to check if counter is maxxxxed out
     disableSwitch();
-    
   }
 
   // This disables the input if the counter reaches the specified number
   const disableSwitch = () => {
-    if (counter >= 23) {
+    if (counter >= maxCount) {
       setDisabled(true);
-    } else if (counter < 23) {
+    } else if (counter < maxCount) {
       setDisabled(false);
     }
   }
@@ -114,30 +113,19 @@ function App() {
             <button className='info' onClick={() => setIsInfoVisible(!isInfoVisible)}>ⓘ</button>
             </nav>
               {/* this form will handle user input */}
-              {/* this ternary allows for form to be hidden and revealed */}
-              <form className={isFormVisible ? 'formVisible' : 'formInvisible'} 
-              action='submit'>
-              <label htmlFor='inputForm'>Add a new note!</label>
-              <input type="text" id="newItem" className={isDisabled ? 'inputBoxDisabled' : 'inputBox'} 
-              // set a minimum length for the input of characters (does not seem to be functioning currenlty, not sure why)
-              minLength="1"
-              // set a maximum length for the input of characters
-              maxLength="16"
-              required
-              // connecting onChange's event object to be used by the handleInputChange function 
-              onChange={handleInputChange}
-              // binding the userInput state to the value attribute
-              value={userInput}
-              disabled={isDisabled}
+              <InputForm 
+              isFormVisible={isFormVisible} 
+              isDisabled={isDisabled}
+              handleInputChange={handleInputChange}
+              userInput={userInput}
+              handleSubmit={handleSubmit}
               />
-              <button className={isDisabled ? 'submitButtonDisabled' : 'submitButton'} onClick={handleSubmit}>⇠</button>
-              </form>   
               {/* this will display info regarding the app */}
               {/* this ternary allows for info to be hidden and revealed */}
               <h1 className={isInfoVisible ? 'infoVisible' : 'infoInvisible'}>Pinboard App</h1>
               {/* count button */}
               <button className='countButton' onClick={() => setCounterVisible(!isCounterVisible)}>☺</button>
-              <p className={isCounterVisible ? 'counterVisible' : 'counterInvisible'}>You have {24 - counter} notes left!</p>
+              <p className={isCounterVisible ? 'counterVisible' : 'counterInvisible'}>You have {countDown} notes left!</p>
               <p className={isCounterVisible ? 'speechVisible' : 'speechInvisible'}>🗨</p>
         </header>
       {/* Main */}
@@ -156,10 +144,7 @@ function App() {
               )
             })}
           </ul>
-        </section>
-        
-          
-        
+        </section>       
       </main>
         <footer className={isInfoVisible ? 'infoVisible' : 'infoInvisible'}>
         ❀ built by gia ❀ using react + firebase ❀
@@ -171,19 +156,9 @@ function App() {
 
 export default App;
 
-
-// PSEUDO CODE for MVP
-// all thats left is to do props...
-
-// error handling --> 
-// set limit for how many notes one can have?
-// add a visual/audio cue for when the character limit for the input is reached
-
-// PSEUDO CODE for MEGA STRETCH GOALS
+// PSEUDO CODE for STRETCH GOALS
 // set up another key node for the counter on firebase (check Safi's code along), have it be checked in the for loop with the other keys
-// add the ability to drag and drop notes
-// change cursors for dragging and dropping
-// add basic animations for picking up and dropping notes
-// add basic sounds for picking up and dropping notes
+// add the ability to drag and drop notes  - I looked into this and couldn't find an easy solution that didn't involve using an extra library 
+// add basic animations
 // add a 'clear all' button that gets rid of all current notes
-// add the ability to store images on notes with firestore
+// Add a dark mode
