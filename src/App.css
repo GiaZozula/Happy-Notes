@@ -33,9 +33,6 @@ p {
   margin: -5px auto;
   padding: 10px;
   display: flex;
-  /* position: fixed;
-  left: 50%;
-  transform: translateX(-50%); */
   z-index: -1;
   flex-wrap: wrap;
 }
@@ -199,6 +196,43 @@ footer {
 .xClose {
   padding: 0px 6px 2px 6px;
 }
+
+/* Instructions */
+.legend {
+  display: block;
+  position:fixed;
+  text-align: left;
+  top: 20vh; 
+  left: 70vw;
+  width: 250px;
+  padding: 20px 30px 5px 30px;
+  border: 4px dashed #ffff;
+  border-radius: 25px;
+  background-color: #cfd7ff;
+  font-size: 1rem;
+}
+
+.legend h2 {
+  margin: 0;
+}
+
+.legend li {
+  padding-bottom: 2px;
+}
+.legend div {
+  display: flex;
+}
+
+.legButton {
+  margin: 0 0 0 140px;
+  padding: 0 10px 0 10px;
+}
+
+.noLegend {
+  display: none;
+}
+
+
 
   /* background-image: url("../assets/xp.png");
   background-attachment: fixed;

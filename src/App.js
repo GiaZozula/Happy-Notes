@@ -4,6 +4,7 @@ import './App.css';
 import firebase from './firebase.js';
 import {useState, useEffect} from 'react';
 import {getDatabase, ref, onValue, push, remove} from 'firebase/database';
+import Instructions from './Instructions.js';
 
 function App() {
   // pieces of state
@@ -102,8 +103,8 @@ function App() {
 
   // JSX
   return (
-    <div className="App">
-      <div className="wrapper">
+    <div className='App'>
+      <div className='wrapper'>
         {/* Header */}
         <header>
           <nav>
@@ -115,8 +116,8 @@ function App() {
               {/* this form will handle user input */}
               {/* this ternary allows for form to be hidden and revealed */}
               <form className={isFormVisible ? 'formVisible' : 'formInvisible'} 
-              action="submit">
-              <label htmlFor="inputForm">Add a new note!</label>
+              action='submit'>
+              <label htmlFor='inputForm'>Add a new note!</label>
               <input type="text" id="newItem" className={isDisabled ? 'inputBoxDisabled' : 'inputBox'} 
               // set a minimum length for the input of characters (does not seem to be functioning currenlty, not sure why)
               minLength="1"
@@ -141,13 +142,14 @@ function App() {
         </header>
       {/* Main */}
       <main>     
-        <section className = "noteZone">
+        <Instructions />
+        <section className='noteZone'>
           <ul>
             {/* map through the items array, displaying each item */}
             {items.map((item) => {
               return (
-                <li className="note" key={item.key}>
-                  <button className="xClose" onClick={() => handleRemoveItem(item.key)}>x</button>
+                <li className='note' key={item.key}>
+                  <button className='xClose' onClick={() => handleRemoveItem(item.key)}>x</button>
                   <p onClick={handleInputChange}>{item.note}</p>
                   {/* This remove button will allow the user to delete specific notes */}
                 </li>
@@ -155,8 +157,11 @@ function App() {
             })}
           </ul>
         </section>
+        
+          
+        
       </main>
-      <footer className={isInfoVisible ? 'infoVisible' : 'infoInvisible'}>
+        <footer className={isInfoVisible ? 'infoVisible' : 'infoInvisible'}>
         ❀ built by gia ❀ using react + firebase ❀
       </footer>
       </div> {/* end of wrapper */}
