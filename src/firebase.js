@@ -7,6 +7,7 @@ import { initializeApp } from "firebase/app";
 const firebaseConfig = {
   apiKey: "AIzaSyAlJxQPSFOUUCGgEdFZ_BhGBaXuEy-I5xw",
   authDomain: "project-three-18c16.firebaseapp.com",
+  databaseURL: "https://project-three-18c16-default-rtdb.firebaseio.com",
   projectId: "project-three-18c16",
   storageBucket: "project-three-18c16.appspot.com",
   messagingSenderId: "707037360118",

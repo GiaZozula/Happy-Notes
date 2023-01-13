@@ -31,6 +31,8 @@ function App() {
 
   // the useEffect hook is used to request the data from firebase
   useEffect(() => {
+    // change the title of the page
+    document.title = "Happy Notes"; 
     // variable that holds database content
     const database = getDatabase(firebase);
     // variable that references the database, specifically targeting the node of the item(note) we want to remove
@@ -122,7 +124,7 @@ function App() {
               />
               {/* this will display info regarding the app */}
               {/* this ternary allows for info to be hidden and revealed */}
-              <h1 className={isInfoVisible ? 'infoVisible' : 'infoInvisible'}>Pinboard App</h1>
+              <h1 className={isInfoVisible ? 'infoVisible' : 'infoInvisible'}>Happy Notes</h1>
               {/* count button */}
               <button className='countButton' onClick={() => setCounterVisible(!isCounterVisible)}>☺</button>
               <p className={isCounterVisible ? 'counterVisible' : 'counterInvisible'}>You have {countDown} notes left!</p>
@@ -155,6 +157,24 @@ function App() {
 }
 
 export default App;
+
+// TODO: MAKE THESE FIXES
+// Make sure it is deployed properly
+// Make responsive
+// Change hard heights (10vh on the header for example, and the speech bubble), use min-height?
+// Make font-sizes responsive but zoomable using calc (font-size: calc(1.5rem + 3vw);)
+// Fix the noteZone overlap issue, perhaps needs some restyling
+// Add counter variable updated with firebase
+
+// Add a restful API call
+
+// Add routes/break things out into components?
+
+// Make the (i) button reveal the legend rather than the title of the app
+
+// Styling
+// Add a new font for the app's title?
+// Add a drop shadow to elements (similar to material design)
 
 // PSEUDO CODE for STRETCH GOALS
 // set up another key node for the counter on firebase (check Safi's code along), have it be checked in the for loop with the other keys
