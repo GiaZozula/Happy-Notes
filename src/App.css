@@ -10,6 +10,7 @@
   color: #4e57ef;
   height: 100vh;
   overflow: hidden;
+  background-color: #f6f8ff;
 }
 
 .wrapper {
@@ -121,22 +122,43 @@ header {
   margin: 30px 0 0 -10px;
 }
 
-/* Nav */
-/* Info input form*/
-.infoVisible {
+h1 {
+  font-size: 1.5rem;
+  margin-left: 150px;
   position: fixed;
+}
+
+/* Nav */
+/* Instructions Legend */
+.infoVisible {
+  display: block;
+  position:fixed;
+  text-align: left;
+  top: 20vh; 
+  left: 70vw;
+  width: 250px;
+  padding: 20px 30px 5px 30px;
+  border: 4px dashed #ffff;
+  border-radius: 25px;
+  background-color: #cfd7ff;
+  font-size: 1rem;
+}
+
+.infoVisible h2 {
+  margin: 0;
+}
+
+.infoVisible li {
+  padding-bottom: 2px;
+}
+.infoVisible div {
+  display: flex;
 }
 
 .infoInvisible {
   display: none;
 }
 
-
-h1 {
-  font-size: 1.5rem;
-  margin-left: 150px;
-  position: fixed;
-}
 
 /* Input Form */
 .formVisible {
@@ -165,36 +187,6 @@ h1 {
 
 
 /* Main */
-/* Instructions Legend */
-.legend {
-  display: block;
-  position:fixed;
-  text-align: left;
-  top: 20vh; 
-  left: 70vw;
-  width: 250px;
-  padding: 20px 30px 5px 30px;
-  border: 4px dashed #ffff;
-  border-radius: 25px;
-  background-color: #cfd7ff;
-  font-size: 1rem;
-}
-
-.legend h2 {
-  margin: 0;
-}
-
-.legend li {
-  padding-bottom: 2px;
-}
-.legend div {
-  display: flex;
-}
-
-.noLegend {
-  display: none;
-}
-
 /* the space that the notes populate */
 .noteZone {
   border: 1px dashed #4e57ef;
@@ -203,8 +195,8 @@ h1 {
   margin: -5px auto;
   padding: 10px;
   display: flex;
-  z-index: -1;
   flex-wrap: wrap;
+  background-color: #ffff;
 }
 
 .noteZone ul {
@@ -230,5 +222,7 @@ h1 {
 
 /* Footer */
 footer {
+  position: fixed;
+  font-size: 1rem;
   padding-block: 20px;
 }

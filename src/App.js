@@ -1,12 +1,4 @@
-// This app currently has several bugs surrounding the counter that I haven't figured out yet. Aside from its value not being stored on a seperate node on firebase, there is one particularly strange issue that I couldn't figure out. 
-
-// When adding new notes, the counter works as it should. Same goes for deleting notes. HOWEVER, when it reaches the max amount, for some reason my isDisabled state doesn't work as I'd hope! I think I'm missing something basic with the logic/math but I've spent too many hours tickering with it to go on. 
-
-// Anywho, if you have any insight into why this is happening I'd LOVE to know why!!!  
-
-// Otherwise, I managed to get the basic MVP done! I would've like to have moved everything into components and to make it super-duper responsive, but I didn't end up having enough time. I will add media queries and reorganize this code later. I'd also love any feedback if there are any accessibility issues that I'm missing!
-
-// Thank you sm for looking :) ❤
+// Thank you for stopping by ❤
 
 import './App.css';
 import firebase from './firebase.js';
@@ -20,7 +12,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [isFormVisible, setIsFormVisible] = useState(true);
-  const [isInfoVisible, setIsInfoVisible] = useState(true);
+  const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [counter, setCounter] = useState(1);
   const [isCounterVisible, setCounterVisible] = useState(true);
   const [isDisabled, setDisabled] = useState(false);
@@ -70,7 +62,7 @@ function App() {
     disableSwitch();  
     // check to make sure there is a character in the input field before pushing to firebase
     if (userInput === '') {
-    alert('pls input at least one character, ty <3');
+    alert('❤ please input at least one character, ty ❤');
     } else {
     // push the userInput state (with its bound value property) to the database
     push(dbRef, userInput)    
@@ -113,7 +105,10 @@ function App() {
             <button className='input' onClick={() => setIsFormVisible(!isFormVisible)}>⌨</button>
             {/* info button */}
             <button className='info' onClick={() => setIsInfoVisible(!isInfoVisible)}>ⓘ</button>
-            </nav>
+            <Instructions 
+            isInfoVisible={isInfoVisible}
+            />
+          </nav>
               {/* this form will handle user input */}
               <InputForm 
               isFormVisible={isFormVisible} 
@@ -124,15 +119,14 @@ function App() {
               />
               {/* this will display info regarding the app */}
               {/* this ternary allows for info to be hidden and revealed */}
-              <h1 className={isInfoVisible ? 'infoVisible' : 'infoInvisible'}>Happy Notes</h1>
+              <h1>Happy Notes</h1>
               {/* count button */}
               <button className='countButton' onClick={() => setCounterVisible(!isCounterVisible)}>☺</button>
               <p className={isCounterVisible ? 'counterVisible' : 'counterInvisible'}>You have {countDown} notes left!</p>
               <p className={isCounterVisible ? 'speechVisible' : 'speechInvisible'}>🗨</p>
         </header>
       {/* Main */}
-      <main>     
-        <Instructions />
+      <main>    
         <section className='noteZone'>
           <ul>
             {/* map through the items array, displaying each item */}
@@ -148,7 +142,7 @@ function App() {
           </ul>
         </section>       
       </main>
-        <footer className={isInfoVisible ? 'infoVisible' : 'infoInvisible'}>
+        <footer>
         ❀ built by gia ❀ using react + firebase ❀
       </footer>
       </div> {/* end of wrapper */}
@@ -161,8 +155,6 @@ export default App;
 // TODO: MAKE THESE FIXES
 // Make sure it is deployed properly
 // Make responsive
-// Change hard heights (10vh on the header for example, and the speech bubble), use min-height?
-// Make font-sizes responsive but zoomable using calc (font-size: calc(1.5rem + 3vw);)
 // Fix the noteZone overlap issue, perhaps needs some restyling
 // Add counter variable updated with firebase
 
