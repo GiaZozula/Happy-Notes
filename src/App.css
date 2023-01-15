@@ -165,6 +165,7 @@ h1 {
   display: flex;
   position: fixed;
   margin: 60px 0 0 10px;
+  font-size: 1rem;
 }
 
 .formInvisible {

@@ -12,7 +12,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [isFormVisible, setIsFormVisible] = useState(true);
-  const [isInfoVisible, setIsInfoVisible] = useState(false);
+  const [isInfoVisible, setIsInfoVisible] = useState(true);
   const [counter, setCounter] = useState(1);
   const [isCounterVisible, setCounterVisible] = useState(true);
   const [isDisabled, setDisabled] = useState(false);

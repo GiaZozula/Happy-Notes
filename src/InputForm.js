@@ -6,7 +6,7 @@ const InputForm = ({isFormVisible, isDisabled, handleInputChange, userInput, han
               <form className={isFormVisible ? 'formVisible' : 'formInvisible'} 
               action='submit'>
                 <label htmlFor='inputForm'>Add a new note!</label>
-                <input type="text" id="newItem" className={isDisabled ? 'inputBoxDisabled' : 'inputBox'} 
+                <input type="text" id="inputForm" className={isDisabled ? 'inputBoxDisabled' : 'inputBox'} 
                 // set a minimum length for the input of characters (does not seem to be functioning currenlty, not sure why)
                 minLength="1"
                 // set a maximum length for the input of characters
