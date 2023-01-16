@@ -13,9 +13,12 @@ function App() {
   const [userInput, setUserInput] = useState('');
   const [isFormVisible, setIsFormVisible] = useState(true);
   const [isInfoVisible, setIsInfoVisible] = useState(true);
-  const [counter, setCounter] = useState(1);
+  const [counter, setCounter] = useState([]);
   const [isCounterVisible, setCounterVisible] = useState(true);
   const [isDisabled, setDisabled] = useState(false);
+
+  // change the title of the page
+  document.title = "Happy Notes"; 
 
   // variable that stores the maximumum number of notes
   let maxCount = 24;
@@ -23,8 +26,6 @@ function App() {
 
   // the useEffect hook is used to request the data from firebase
   useEffect(() => {
-    // change the title of the page
-    document.title = "Happy Notes"; 
     // variable that holds database content
     const database = getDatabase(firebase);
     // variable that references the database, specifically targeting the node of the item(note) we want to remove
@@ -36,7 +37,7 @@ function App() {
       const updatedDb = [];
       // for loop to access each individual item in the data object
       for (let key in data) {
-        // inside the loop, we push each book name to the newState array in the onValue function
+        // inside the loop, we push each piece of data
         updatedDb.push({key: key, note: data[key]});
       }
       // then, we call setItems to update the component's state using the local array newState
@@ -68,6 +69,8 @@ function App() {
     push(dbRef, userInput)    
     // add one to counter everytime a note is added
     setCounter(counter + 1)
+    // push the counter to the database
+    // push(dbRef, counter)
     // after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
     setUserInput('');
     }    
@@ -155,18 +158,12 @@ export default App;
 // TODO: MAKE THESE FIXES
 // Make sure it is deployed properly
 // Make responsive
-// Fix the noteZone overlap issue, perhaps needs some restyling
 // Add counter variable updated with firebase
 
 // Add a restful API call
 
 // Add routes/break things out into components?
 
-// Make the (i) button reveal the legend rather than the title of the app
-
-// Styling
-// Add a new font for the app's title?
-// Add a drop shadow to elements (similar to material design)
 
 // PSEUDO CODE for STRETCH GOALS
 // set up another key node for the counter on firebase (check Safi's code along), have it be checked in the for loop with the other keys

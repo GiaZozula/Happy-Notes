@@ -76,7 +76,7 @@ p {
 .submitButton {
   display: block;
   position: fixed;
-  margin-left: 430px;
+  margin-left: 400px;
   margin-top: .5px;
   padding: 9.5px 11.5px 9.5px 11.5px;
 }
@@ -178,6 +178,7 @@ h1 {
   padding: 10px;
   border: 1px solid #4e57ef;
   margin-left: 10px;
+  box-shadow: 1px 1.25px 0px 0px #4e57ef;
 }
 
 .inputBoxDisabled {
@@ -193,8 +194,8 @@ h1 {
   border: 1px dashed #4e57ef;
   width: 1000px;
   min-height: 80vh;
-  margin: -5px auto;
-  padding: 10px;
+  margin: 0px auto;
+  padding: 15px;
   display: flex;
   flex-wrap: wrap;
   background-color: #ffff;
@@ -223,7 +224,6 @@ h1 {
 
 /* Footer */
 footer {
-  position: fixed;
-  font-size: 1rem;
-  padding-block: 20px;
+  padding-top: 2px;
+  font-size: .8rem;
 }
