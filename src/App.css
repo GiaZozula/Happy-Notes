@@ -40,7 +40,7 @@ p {
 }
 
 .countButton {
-  margin: 0 0 0 1000px;
+  margin-left: 120px;
   padding: 0 5px 20px 5px;
   position: fixed;
   box-shadow: none;
@@ -49,12 +49,19 @@ p {
   line-height: 80px;
 }
 
+.speechBubble {
+  z-index: 1;
+}
+
 .speechVisible {
   display: block;
   position: fixed;
-  margin: 0 0 0 870px;
   color: #cfd7ff;
   transform:scale(14, 8);
+}
+
+.speechAndCounter {
+  margin-left: 60vw;
 }
 
 .speechInvisible {
@@ -65,7 +72,7 @@ p {
   display: block;
   font-size: .9rem;
   position: fixed;
-  margin: 20px 0 0 780px;
+  margin: 20px 0 0 -85px;
   z-index: 1; 
 }
 

@@ -124,9 +124,14 @@ function App() {
               {/* this ternary allows for info to be hidden and revealed */}
               <h1>Happy Notes</h1>
               {/* count button */}
-              <button className='countButton' onClick={() => setCounterVisible(!isCounterVisible)}>☺</button>
-              <p className={isCounterVisible ? 'counterVisible' : 'counterInvisible'}>You have {countDown} notes left!</p>
-              <p className={isCounterVisible ? 'speechVisible' : 'speechInvisible'}>🗨</p>
+              <div className='speechAndCounter'>
+                <button className='countButton' onClick={() => setCounterVisible(!isCounterVisible)}>☺</button>
+                <div className='speechBubble'>
+                  <p className={isCounterVisible ? 'counterVisible' : 'counterInvisible'}>You have {countDown} notes left!</p>
+                  <p className={isCounterVisible ? 'speechVisible' : 'speechInvisible'}>🗨</p>
+                </div>
+
+              </div>
         </header>
       {/* Main */}
       <main>    
